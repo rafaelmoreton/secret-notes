@@ -11,4 +11,6 @@
   <% end %>
 </div>
 
-<%= link_to "New note", new_note_path %>
+<% if current_user %>
+  <%= link_to "New note", new_note_path %>
+<% end %>

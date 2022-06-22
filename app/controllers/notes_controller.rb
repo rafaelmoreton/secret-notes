@@ -1,5 +1,7 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[ show index ]
+  before_action :user_owned?, except: %i[ show index ]
 
   # GET /notes or /notes.json
   def index
@@ -67,5 +69,11 @@ class NotesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def note_params
       params.require(:note).permit(:title, :content)
+    end
+
+    def user_owned?
+      if current_user.id != @note.user_id
+        redirect_to root_path
+      end
     end
 end

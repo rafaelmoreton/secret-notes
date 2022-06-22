@@ -9,9 +9,11 @@
     <%= note.content %>
   </p>
 
-  <p>
-    <strong>Author:</strong>
-    <%= User.find(note.user_id).username %>
-  </p>
+  <% if user_signed_in? %>
+    <p>
+      <strong>Author:</strong>
+      <%= User.find(note.user_id).username %>
+    </p>
+  <% end %>
 
 </div>

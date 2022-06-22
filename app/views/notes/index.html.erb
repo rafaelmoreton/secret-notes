@@ -4,7 +4,7 @@
 
 <div id="notes">
   <% @notes.each do |note| %>
-    <%= render note %>
+    <%= render "note_card", :note => note %>
     <p>
       <%= link_to "Show this note", note %>
     </p>

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :authentication_keys => [:username]
 
-  validates :username, uniqueness:true
+  validates :username, uniqueness:true, format: { without: /\s/, message: "can't have whitespace" }, length: { in: 4..16 }
 
   has_many :notes
 
